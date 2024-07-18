@@ -50,7 +50,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -87,4 +86,19 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
+
+    implementation ("com.google.mlkit:barcode-scanning:17.0.2")
+
+    implementation ("com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.2")
+    implementation ("androidx.camera:camera-core:1.1.0")
+    implementation ("androidx.camera:camera-camera2:1.1.0")
+    implementation ("androidx.camera:camera-lifecycle:1.1.0")
+    implementation ("androidx.camera:camera-view:1.0.0-alpha31")
+    implementation ("com.google.zxing:core:3.4.0")
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.first_app
+package com.example.first_app.composables.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
@@ -7,9 +7,8 @@ import androidx.compose.runtime.Composable
 
 @Composable
 
-
-fun ScannerScreen() {
+fun SettingsScreen(name: String){
     Column {
-        Text(text = "Scanner Screen")
+        Text(text = "I'm $name")
     }
 }

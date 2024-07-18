@@ -1,4 +1,4 @@
-package com.example.first_app
+package com.example.first_app.composables
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -6,7 +6,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 
 import androidx.compose.ui.graphics.vector.ImageVector
-
+import com.example.first_app.Routes
 
 
 data class NavigationItem(

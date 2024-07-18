@@ -1,4 +1,4 @@
-package com.example.first_app
+package com.example.first_app.composables.screens
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -14,6 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.first_app.composables.bottomBarRoutes
+import com.example.first_app.composables.bottomNavigationItems
+import com.example.first_app.composables.AppNavigation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
