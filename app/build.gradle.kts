@@ -97,8 +97,6 @@ dependencies {
     implementation ("androidx.camera:camera-camera2:1.1.0")
     implementation ("androidx.camera:camera-lifecycle:1.1.0")
     implementation ("androidx.camera:camera-view:1.0.0-alpha31")
-    implementation ("com.google.zxing:core:3.4.0")
-
-
-
+    implementation ("com.google.zxing:core:3.5.3")
+    implementation ("com.airbnb.android:lottie-compose:6.3.0")
 }

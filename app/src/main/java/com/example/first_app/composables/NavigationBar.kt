@@ -1,9 +1,13 @@
 package com.example.first_app.composables
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
 
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.first_app.Routes
@@ -23,3 +27,5 @@ val bottomNavigationItems = listOf(
 
 val bottomBarRoutes = setOf(Routes.homeScreen, Routes.scannerScreen, Routes.settingsScreen)
 
+
+val topBarRoutes = setOf(Routes.homeScreen, Routes.settingsScreen)

@@ -1,6 +1,11 @@
 package com.example.first_app.composables.screens
 
-import android.content.Context
+import android.Manifest
+import android.content.pm.PackageManager
+import android.util.Log
+import android.util.Size
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -8,39 +13,22 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import android.util.Size
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.content.ContextCompat
-import android.Manifest
-import android.content.pm.PackageManager
-import android.util.Log
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.PackageManagerCompat
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat
 import com.example.first_app.composables.qrCodeScanner.QrCodeAnalyzer
-import com.google.accompanist.permissions.rememberPermissionState
-import com.google.mlkit.vision.barcode.BarcodeScanner
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import com.google.mlkit.vision.barcode.BarcodeScanning
-import com.google.mlkit.vision.barcode.ZoomSuggestionOptions
-import com.google.mlkit.vision.barcode.common.Barcode
-
-
-
-
 
 @Composable
 fun ScannerScreen() {
@@ -104,14 +92,13 @@ fun ScannerScreen() {
                         imageAnalysis
                     )
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    Log.e("ScannerScreen", "Camera binding failed: ${e.message}")
                 }
                 previewView
             },
                 modifier = Modifier.weight(1f)
             )
             val output = code.value
-            Log.d("ScannerScreen", "Output code: $code")
             Text(
                 text = "Text: $output",
                 fontSize = 20.sp,

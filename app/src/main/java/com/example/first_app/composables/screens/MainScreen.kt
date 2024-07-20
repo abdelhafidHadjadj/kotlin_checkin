@@ -17,6 +17,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.first_app.composables.bottomBarRoutes
 import com.example.first_app.composables.bottomNavigationItems
 import com.example.first_app.composables.AppNavigation
+import com.example.first_app.composables.topBarRoutes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,9 +28,13 @@ fun MainScreen(navController: NavHostController) {
 
     Scaffold(
         topBar = {
+            if (currentRoute in topBarRoutes) {
             TopAppBar(
                 title = { Text(text = "$currentRoute") }
+
             )
+            }
+
         },
         bottomBar = {
             if (currentRoute in bottomBarRoutes) {
@@ -55,7 +60,9 @@ fun MainScreen(navController: NavHostController) {
     ) { innerPadding ->
         AppNavigation(
             navController = navController,
-            modifier = Modifier.padding(innerPadding).padding(50.dp)
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(50.dp)
 
         )
     }
