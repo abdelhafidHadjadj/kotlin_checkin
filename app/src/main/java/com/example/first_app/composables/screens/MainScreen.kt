@@ -1,13 +1,19 @@
 package com.example.first_app.composables.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -27,18 +33,23 @@ fun MainScreen(navController: NavHostController) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(
+        modifier = Modifier
+            .statusBarsPadding()
+            .navigationBarsPadding(),
         topBar = {
             if (currentRoute in topBarRoutes) {
             TopAppBar(
-                title = { Text(text = "$currentRoute") }
-
+                title = { Text(text = "$currentRoute") },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background)
             )
             }
 
         },
         bottomBar = {
             if (currentRoute in bottomBarRoutes) {
-                NavigationBar {
+                NavigationBar (
+
+                ){
                     bottomNavigationItems.forEach { item ->
                         NavigationBarItem(
                             icon = { Icon(item.icon, contentDescription = null) },
