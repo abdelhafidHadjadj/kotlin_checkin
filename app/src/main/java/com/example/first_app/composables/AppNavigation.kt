@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.first_app.QrTypes
 import com.example.first_app.composables.screens.HomeScreen
 import com.example.first_app.composables.screens.LoginScreen
 import com.example.first_app.composables.screens.PermissionScreen
@@ -36,19 +37,30 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         composable(Routes.permissionScreen) {
             PermissionScreen(navController)
         }
-        composable(Routes.loginScreen) {
-            LoginScreen(navController)
+
+        composable(Routes.loginScreen+"?qrBody={qrBody}") {
+            val qrBody = it.arguments?.getString("qrBody")
+            LoginScreen(navController, qrBody?: "")
         }
-        composable(Routes.homeScreen) {
-            HomeScreen(navController)
+        composable(Routes.homeScreen+"?qrBody={qrBody}") {
+            val qrBody = it.arguments?.getString("qrBody")
+
+            HomeScreen(navController, qrBody?: "")
+
         }
         composable(Routes.settingsScreen) {
 
             SettingsScreen()
         }
-        composable(Routes.scannerScreen) {
-            ScannerScreen()
-        }
+
+        /*composable(Routes.scannerScreen) {
+            ScannerScreen(navController, QrTypes.AUTH)
+        }*/
+            composable(Routes.scannerScreen + "/{type}") {
+                val typeString = it.arguments?.getString("type")
+                val type = if (typeString != null) QrTypes.valueOf(typeString) else QrTypes.CHECK
+                ScannerScreen(navController, type)
+            }
     })
 }
 

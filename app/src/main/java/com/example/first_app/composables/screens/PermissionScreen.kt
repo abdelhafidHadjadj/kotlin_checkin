@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.core.content.ContextCompat
+import com.example.first_app.Routes
 import com.example.first_app.composables.libs.AnimationComponent
 
 @Composable
@@ -59,7 +60,8 @@ fun PermissionScreen(navController: NavController) {
         onResult = { granted ->
             if (granted) {
                 // Navigate to LoginScreen upon granting permission
-                navController.navigate("login")
+                val qrBody = ""
+                navController.navigate(Routes.loginScreen+"?qrBody=$qrBody")
             } else {
                 // Handle permission denial if needed
                 // Optionally show a message or retry option
@@ -72,7 +74,8 @@ fun PermissionScreen(navController: NavController) {
     // Launch the permission request when the composable is first used
     LaunchedEffect(Unit) {
         if(hasCamPermission.value) {
-            navController.navigate("login")
+            val qrBody = ""
+            navController.navigate(Routes.loginScreen+"?qrBody=$qrBody")
         }
     }
 

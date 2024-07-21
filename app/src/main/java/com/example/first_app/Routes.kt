@@ -5,5 +5,5 @@ object Routes {
         var homeScreen = "home"
         var settingsScreen = "settings"
         var permissionScreen = "permission"
-        var scannerScreen = "scanner"
+        var scannerScreen = "scanner/{type}"
 }

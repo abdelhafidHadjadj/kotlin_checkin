@@ -20,13 +20,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.first_app.QrTypes
 import com.example.first_app.Routes
 import com.example.first_app.composables.libs.AnimationComponent
 
 @Composable
 
-fun LoginScreen(navContoller: NavController){
-
+fun LoginScreen(navContoller: NavController, qrBody: String = ""){
+    /**
+     * if qr body => send http req if success > set token + redirect home
+     *                             else err > msg "Login Failed"
+     */
+    val type = QrTypes.AUTH
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -60,7 +65,8 @@ fun LoginScreen(navContoller: NavController){
             )
 
             Button(onClick = {
-                navContoller.navigate(Routes.scannerScreen)
+                navContoller.navigate(Routes.scannerScreen+"/${type.name}")
+                /*navContoller.navigate(Routes.homeScreen+"?qrBody=$qrBody")*/
             },
                 modifier = Modifier
                     .fillMaxWidth(),

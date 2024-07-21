@@ -67,7 +67,7 @@ class QrCodeAnalyzer(
                 Log.d("QrCodeAnalyzer", "QR Code detected: ${result.text}")
                 onQrCodeScanned(result.text)
             } catch (e: Exception) {
-                Log.e("QrCodeAnalyzer", "QR Code not detected: ${e.message}")
+              //  Log.e("QrCodeAnalyzer", "QR Code not detected: ${e.message}")
             }
         } else {
             Log.d("QrCodeAnalyzer", "Unsupported image format: ${image.format}")

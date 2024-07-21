@@ -10,6 +10,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.first_app.QrTypes
 import com.example.first_app.Routes
 
 
@@ -19,13 +20,14 @@ data class NavigationItem(
     val icon: ImageVector
 )
 
+val type = QrTypes.CHECK
 val bottomNavigationItems = listOf(
-    NavigationItem(Routes.homeScreen, "Home", Icons.Filled.Home),
-    NavigationItem(Routes.scannerScreen, "Scanner", Icons.Filled.Add),
+    NavigationItem(Routes.homeScreen+"?qrBody={qrBody}", "Home", Icons.Filled.Home),
+    NavigationItem(Routes.scannerScreen+"/${type.name}", "Scanner", Icons.Filled.Add),
     NavigationItem(Routes.settingsScreen, "Settings", Icons.Filled.Settings),
     )
 
-val bottomBarRoutes = setOf(Routes.homeScreen, Routes.scannerScreen, Routes.settingsScreen)
+val bottomBarRoutes = setOf(Routes.homeScreen+"?qrBody={qrBody}", Routes.settingsScreen)
 
 
 val topBarRoutes = setOf(Routes.homeScreen, Routes.settingsScreen)

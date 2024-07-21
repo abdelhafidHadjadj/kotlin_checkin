@@ -28,10 +28,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.first_app.QrTypes
+import com.example.first_app.Routes
 import com.example.first_app.composables.qrCodeScanner.QrCodeAnalyzer
 
 @Composable
-fun ScannerScreen() {
+fun ScannerScreen(navController: NavController,type: QrTypes = QrTypes.CHECK) {
+    //val navBackStackEntry = navController.currentBackStackEntryAsState().value
+
+    //val typeString = navBackStackEntry?.arguments?.getString("type")
+    //val type = if (typeString != null) QrTypes.valueOf(typeString) else QrTypes.CHECK
+
+
     val code = remember {
         mutableStateOf("")
     }
@@ -81,7 +91,13 @@ fun ScannerScreen() {
                     ContextCompat.getMainExecutor(context),
                     QrCodeAnalyzer { result ->
                         code.value = result
+                        val qrBody = result
                         Log.d("ScannerScreen", "Scanned code: $result")
+                        if (type == QrTypes.AUTH) {
+                            navController.navigate(Routes.loginScreen+"?qrBody=$qrBody")
+                        } else {
+                            navController.navigate(Routes.homeScreen+"?qrBody=$qrBody")
+                        }
                     }
                 )
                 try {
@@ -98,9 +114,10 @@ fun ScannerScreen() {
             },
                 modifier = Modifier.weight(1f)
             )
-            val output = code.value
+            val qrBody = code.value
+
             Text(
-                text = "Text: $output",
+                text = "Text: $qrBody",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier

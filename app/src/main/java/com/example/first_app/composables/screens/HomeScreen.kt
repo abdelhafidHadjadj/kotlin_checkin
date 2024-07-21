@@ -16,10 +16,11 @@ import com.example.first_app.composables.libs.HistoryItem
 
 @Composable
 
-fun HomeScreen(navController: NavController){
+fun HomeScreen(navController: NavController, qrBody: String = ""){
 
     Column (
     ){
+        Text(text = qrBody)
         HistoryItem(username = "Hafid", tag = "Participant", checkInTime = "2024-02-01 20:25:35")
     }
 }
