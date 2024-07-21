@@ -17,15 +17,10 @@ import com.example.first_app.composables.libs.HistoryItem
 @Composable
 
 fun HomeScreen(navController: NavController){
+
     Column (
     ){
-        Text(text= "Home")
-        Button(onClick = { navController.navigate(Routes.settingsScreen +"/hafid")}){
-            Text(text = "Go to settings")
-        }
-        Button(onClick = { navController.navigate(Routes.scannerScreen)}) {
-            Text(text = "QR Code Scanner")
-        }
+
         HistoryItem(username = "Hafid", tag = "Participant", checkInTime = "2024-02-01 20:25:35")
     }
 }

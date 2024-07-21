@@ -42,12 +42,22 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         composable(Routes.homeScreen) {
             HomeScreen(navController)
         }
-        composable(Routes.settingsScreen +"/{name}") {
-            val name = it.arguments?.getString("name")
-            SettingsScreen(name?: "no name")
+        composable(Routes.settingsScreen) {
+
+            SettingsScreen()
         }
         composable(Routes.scannerScreen) {
             ScannerScreen()
         }
     })
 }
+
+
+/*
+*
+*    composable(Routes.settingsScreen +"/{name}") {
+            val name = it.arguments?.getString("name")
+            SettingsScreen(name?: "no name")
+        }
+*
+* */

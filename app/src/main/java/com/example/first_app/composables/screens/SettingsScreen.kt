@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 
 @Composable
 
-fun SettingsScreen(name: String){
+fun SettingsScreen(){
     Column {
-        Text(text = "I'm $name")
+        Text(text = "")
     }
 }
