@@ -72,7 +72,7 @@ fun PermissionScreen(navController: NavController) {
     // Launch the permission request when the composable is first used
     LaunchedEffect(Unit) {
         if(hasCamPermission.value) {
-            navController.navigate("home")
+            navController.navigate("login")
         }
     }
 
