@@ -139,8 +139,8 @@ Certainly! Here’s a table for screenshots corresponding to each screen in the 
 
 | Screen Name      | Description                              | Screenshot                                 |
 |------------------|------------------------------------------|--------------------------------------------|
-| Permissions      | Screen to request and manage permissions | ![Permissions Screen](screenshots/permissions_screen.png) |
-| Login            | Screen for user login                    | ![Login Screen](screenshots/login_screen.png) |
-| Scanner          | QR code scanning screen                  | ![Scanner Screen](screenshots/scanner_screen.png) |
-| Home             | Main screen after login                  | ![Home Screen](screenshots/home_screen.png) |
-| Settings         | Settings screen                          | ![Settings Screen](screenshots/settings_screen.png) |
+| Permissions      | Screen to request and manage permissions | ![Permissions Screen](screenshots/permissions_screen.jpg) |
+| Login            | Screen for user login                    | ![Login Screen](screenshots/login_screen.jpg) |
+| Scanner          | QR code scanning screen                  | ![Scanner Screen](screenshots/scanner_screen.jpg) |
+| Home             | Main screen after login                  | ![Home Screen](screenshots/home_screen.jpg) |
+| Settings         | Settings screen                          | ![Settings Screen](screenshots/settings_screen.jpg) |
