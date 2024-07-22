@@ -9,13 +9,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.first_app.QrTypes
 import com.example.first_app.composables.screens.HomeScreen
 import com.example.first_app.composables.screens.LoginScreen
 import com.example.first_app.composables.screens.PermissionScreen
 import com.example.first_app.Routes
+import com.example.first_app.SettingsRoute
 import com.example.first_app.composables.screens.ScannerScreen
-import com.example.first_app.composables.screens.SettingsScreen
+import com.example.first_app.composables.screens.Settings.AppSettingScreen
+import com.example.first_app.composables.screens.Settings.ProfileScreen
+import com.example.first_app.composables.screens.Settings.SettingsScreen
 
 
 @Composable
@@ -50,7 +54,7 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         }
         composable(Routes.settingsScreen) {
 
-            SettingsScreen()
+            SettingsNavigation(navController)
         }
 
         /*composable(Routes.scannerScreen) {
@@ -65,11 +69,21 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
 }
 
 
-/*
-*
-*    composable(Routes.settingsScreen +"/{name}") {
-            val name = it.arguments?.getString("name")
-            SettingsScreen(name?: "no name")
+@Composable
+fun SettingsNavigation(parentNavigation: NavHostController) {
+    val settingsNavController = rememberNavController()
+    NavHost(
+        navController = settingsNavController,
+        startDestination = Routes.settingsScreen
+        ){
+        composable(Routes.settingsScreen) {
+            SettingsScreen(settingsNavController ,parentNavigation)
         }
-*
-* */
+        composable(SettingsRoute.profile) {
+            ProfileScreen(settingsNavController, parentNavigation)
+        }
+        composable(SettingsRoute.app) {
+            AppSettingScreen(settingsNavController, parentNavigation)
+        }
+        }
+}

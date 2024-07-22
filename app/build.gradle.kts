@@ -101,6 +101,8 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
     implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
+    implementation("androidx.compose.material:material:<latest_version>")
+    implementation("androidx.compose.material:material-icons-extended:<latest_version>")
 
     implementation ("com.google.mlkit:barcode-scanning:17.0.2")
 
