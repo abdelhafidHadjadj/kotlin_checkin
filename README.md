@@ -135,7 +135,6 @@ Styling details such as color schemes, themes, and typography are defined in the
 
 ## ScreenShots Table
 
-Certainly! Here’s a table for screenshots corresponding to each screen in the mermaid section, excluding the subgraph groupings:
 
 | Screen Name      | Description                              | Screenshot                                 |
 |------------------|------------------------------------------|--------------------------------------------|
