@@ -2,6 +2,7 @@ package com.example.first_app.composables.screens
 
 
 import android.Manifest
+import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -35,11 +37,19 @@ import com.example.first_app.remote.dto.auth.AuthRequest
 import com.example.first_app.remote.dto.auth.AuthResponse
 import com.example.first_app.remote.dto.auth.AuthResponseWithHeaders
 import com.example.first_app.remote.dto.auth.TestResponse
+import com.example.first_app.utils.saveSessionId
+import com.example.first_app.utils.verifySessionId
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.HttpResponse
 import kotlinx.coroutines.launch
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
+
 
 @Composable
 
@@ -50,9 +60,13 @@ fun LoginScreen(navContoller: NavController, qrBody: String = ""){
      */
     val type = QrTypes.AUTH
     val authService = remember { AuthService.create() }
-    val authRes = remember { mutableStateOf<AuthResponseWithHeaders?>(null) }
+    val authRes = remember { mutableStateOf("") }
     var errorMessage = remember { mutableStateOf<String?>(null) }
-    val status = remember { mutableStateOf<String?>(null) }
+    val context = LocalContext.current
+    val isLoggedIn = remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
+
+
 
     /*val coroutineScope = rememberCoroutineScope()
     LaunchedEffect(Unit) {
@@ -78,36 +92,26 @@ fun LoginScreen(navContoller: NavController, qrBody: String = ""){
         }
     }*/
     LaunchedEffect(Unit) {
-        try {
-            val uuid = "7be0a90e-4763-11ef-807a-632c7ad3a20e"
-            val authRequest = AuthRequest(uuid)
-            val response = authService.login(authRequest)
+        if (qrBody.isNotBlank() && QrTypes.AUTH.name == "AUTH") {
+            val (responseBody, error) = performLogin(authService, qrBody, context)
+            Log.d("res body", "$responseBody")
+            if (error == null) {
+                authRes.value = responseBody ?: ""
+                isLoggedIn.value = true
+                coroutineScope.launch {
+                    delay(1500)  // Show "Verified" for 2 seconds
+                    navContoller.navigate(Routes.homeScreen+"?qrBody=$qrBody") {
+                        popUpTo(Routes.loginScreen) { inclusive = true }  // Optionally clear the back stack
+                    }
+                }
 
-            // Handle the nullable response
-            if (response != null) {
-                authRes.value = response
-
-                // Extract sessionId safely
-                val setCookie = response.headers?.get("set-cookie")
-                val sessionId = setCookie
-                    ?.split(";")
-                    ?.firstOrNull()
-                    ?.split("=")
-                    ?.getOrNull(1)
-
-                // Safely access status
-                status.value = response.status.toString()
-
-                Log.d("response", "$response")
-                Log.d("sessionID", "$sessionId")
             } else {
-                errorMessage.value = "Request failed"
+                errorMessage.value = error
             }
-        } catch (e: Exception) {
-            errorMessage.value = "Error: ${e.message}"
-            Log.d("error", "$e")
-        }
+
     }
+    }
+
 
 
     Column(
@@ -123,7 +127,7 @@ fun LoginScreen(navContoller: NavController, qrBody: String = ""){
                 .fillMaxWidth()
         ) {
 
-            AnimationComponent("scan_card.json")
+            AnimationComponent(if (isLoggedIn.value) "authed.json" else "scan_card.json")
 
         }
         Column(
@@ -132,16 +136,13 @@ fun LoginScreen(navContoller: NavController, qrBody: String = ""){
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
+
             Text(
-                text = "response : $authRes \n error: $errorMessage",
+                text = if (isLoggedIn.value) "Verified" else "Sign in",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.SemiBold
             )
-            Text(
-                text = "Sign in",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.SemiBold
-            )
+            if(!isLoggedIn.value) {
             Text(
                 text = "Scan the QR code on your badge to identify",
                 textAlign = TextAlign.Center
@@ -150,7 +151,7 @@ fun LoginScreen(navContoller: NavController, qrBody: String = ""){
             Button(onClick = {
                 navContoller.navigate(Routes.scannerScreen+"/${type.name}")
                 /*navContoller.navigate(Routes.homeScreen+"?qrBody=$qrBody")*/
-            },
+            } ,
                 modifier = Modifier
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(10.dp),
@@ -165,6 +166,35 @@ fun LoginScreen(navContoller: NavController, qrBody: String = ""){
             ) {
                 Text(text = "SCAN NOW")
             }
+        }
+
+        }
+    }
+}
+
+
+
+
+// Define the suspend function for performing login
+suspend fun performLogin(authService: AuthService, uuid: String, context: Context): Pair<String?, String?> {
+    Log.d("uuid insid fun", "$uuid")
+    return withContext(Dispatchers.IO) {
+        try {
+            val authRequest = AuthRequest(uuid)
+            val response = authService.login(authRequest)
+            Log.d("inside perform log", "Response: ${response?.response?.success}") // Log the entire response object
+            // Handle the nullable response
+            if (response != null && response.response.success) {
+                val sessionId = response.response.body
+                saveSessionId(context, sessionId)
+                verifySessionId(context)
+                Pair(response.response.body, null)  // Success case
+
+            } else {
+                Pair(null, "Request failed")  // Failure case
+            }
+        } catch (e: Exception) {
+            Pair(null, "Error: ${e.message}")  // Error case
         }
     }
 }

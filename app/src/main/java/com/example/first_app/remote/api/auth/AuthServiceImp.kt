@@ -21,17 +21,21 @@ class AuthServiceImp(
 ) : AuthService {
     override suspend fun login(authRequest: AuthRequest): AuthResponseWithHeaders? {
         return try {
+            Log.d("AuthServiceImp", "UUID: ${authRequest.uuid}") // Log the UUID
             val response: HttpResponse = client.get {
                 url(HttpRoutes.LOGIN)
                 parameter("uuid", authRequest.uuid)
             }
-            val authResponse = response.receive<AuthResponse>()
-            val headers = response.headers
-            val singleValueHeaders = headers.toMap().mapValues { it.value.joinToString(", ") }
+            val headers = response.headers.toMap().mapValues { it.value.joinToString(", ") }
             val setCookie = headers["set-cookie"]
-            val sessionId = extractSessionId(setCookie)
-            val status = response.status.value
-            AuthResponseWithHeaders(authResponse, singleValueHeaders, sessionId, status)
+            Log.d("AuthServiceImp", "Set-Cookie: $setCookie")
+
+            // Extract session ID from the set-cookie header
+            val sessionId = setCookie?.let { extractSessionId(it) }
+            Log.d("AuthServiceImp", "Session ID: $sessionId")
+            val authResponse = AuthResponse(success = true, error = false, body = sessionId ?: "")
+
+            AuthResponseWithHeaders(authResponse, headers)
         } catch (e: RedirectResponseException) {
             Log.d("AuthServiceImp", "Redirect Error: ${e.response.status.description}")
             null

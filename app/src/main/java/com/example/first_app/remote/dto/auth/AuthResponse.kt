@@ -25,6 +25,5 @@ data class TestResponse(
 data class AuthResponseWithHeaders(
     val response: AuthResponse,
     val headers: Map<String, String>?,
-    val sessionId: String?,
-    val status: Int
+
 )

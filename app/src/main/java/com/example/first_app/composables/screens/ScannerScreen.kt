@@ -11,16 +11,26 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
@@ -70,9 +80,15 @@ fun ScannerScreen(navController: NavController,type: QrTypes = QrTypes.CHECK) {
     }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (hasCamPermission.value) {
+            Column(
+                modifier = Modifier.width(280.dp).height(370.dp).padding(20.dp)
+                    .border(10.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(10.dp)),
+                ){
             AndroidView(factory = { context ->
                 val previewView = PreviewView(context)
                 val preview = Preview.Builder().build()
@@ -112,12 +128,12 @@ fun ScannerScreen(navController: NavController,type: QrTypes = QrTypes.CHECK) {
                 }
                 previewView
             },
-                modifier = Modifier.weight(1f)
-            )
+                modifier = Modifier.weight(0.5f)
+            )}
             val qrBody = code.value
 
             Text(
-                text = "Text: $qrBody",
+                text = "$qrBody",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier

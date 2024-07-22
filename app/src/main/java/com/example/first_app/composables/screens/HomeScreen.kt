@@ -20,7 +20,6 @@ fun HomeScreen(navController: NavController, qrBody: String = ""){
 
     Column (
     ){
-        Text(text = qrBody)
         HistoryItem(username = "Hafid", tag = "Participant", checkInTime = "2024-02-01 20:25:35")
     }
 }

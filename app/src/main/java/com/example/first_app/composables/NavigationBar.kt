@@ -2,7 +2,9 @@ package com.example.first_app.composables
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Text
@@ -23,8 +25,8 @@ data class NavigationItem(
 val type = QrTypes.CHECK
 val bottomNavigationItems = listOf(
     NavigationItem(Routes.homeScreen+"?qrBody={qrBody}", "Home", Icons.Filled.Home),
-    NavigationItem(Routes.scannerScreen+"/${type.name}", "Scanner", Icons.Filled.Add),
-    NavigationItem(Routes.settingsScreen, "Settings", Icons.Filled.Settings),
+    NavigationItem(Routes.scannerScreen+"/${type.name}", "Scanner", Icons.Filled.AddCircle),
+    NavigationItem(Routes.settingsScreen, "Settings", Icons.Filled.AccountCircle),
     )
 
 val bottomBarRoutes = setOf(Routes.homeScreen+"?qrBody={qrBody}", Routes.settingsScreen)

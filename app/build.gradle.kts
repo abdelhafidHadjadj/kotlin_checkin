@@ -51,6 +51,8 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -72,6 +74,7 @@ dependencies {
     implementation("io.ktor:ktor-client-android:$ktor_version")
     implementation("io.ktor:ktor-client-serialization:$ktor_version")
     implementation("io.ktor:ktor-client-logging:$ktor_version")
+//    implementation("io.ktor:ktor-client-cookies:$ktor_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
