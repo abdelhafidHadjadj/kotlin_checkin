@@ -9,25 +9,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
 
 
-fun CustomButton(onClick: () -> Unit, text: String) {
-    Button(onClick = {
-        // Trigger the permission request when button is clicked
-    },
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(10.dp))
-        ,colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary, // Transparent background
+fun CustomButton(onClick: () -> Unit, text: String, buttonModifier: Modifier = Modifier, textModifier: Modifier = Modifier) {
+    Button(onClick = onClick,
+        modifier = buttonModifier,
+        elevation = ButtonDefaults.elevatedButtonElevation(0.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Transparent, // Transparent background
+            contentColor = MaterialTheme.colorScheme.primary // Set text color
         ),
-        elevation = ButtonDefaults.elevatedButtonElevation(0.dp) // Remove elevation
-
-
     ) {
-        Text(text = "Request Permission")
+        Text(
+            text = text,
+            modifier =  textModifier
+            )
     }
 }

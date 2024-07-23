@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.material.icons.filled.Settings
@@ -25,7 +26,7 @@ data class NavigationItem(
 
 val type = QrTypes.CHECK
 val bottomNavigationItems = listOf(
-    NavigationItem(Routes.homeScreen+"?qrBody={qrBody}", "Home", Icons.Filled.Home),
+    NavigationItem(Routes.homeScreen+"?qrBody={qrBody}", "Home", Icons.Filled.History),
     NavigationItem(Routes.scannerScreen+"/${type.name}", "Scanner", Icons.Filled.QrCodeScanner),
     NavigationItem(Routes.settingsScreen, "Settings", Icons.Filled.AccountCircle),
     )

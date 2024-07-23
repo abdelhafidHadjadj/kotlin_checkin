@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -72,6 +73,12 @@ fun MainScreen(navController: NavHostController) {
                             icon = { Icon(item.icon, contentDescription = null) },
                             label = { Text(text = item.label) },
                             selected = currentRoute == item.route,
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = MaterialTheme.colorScheme.primary,
+                                unselectedIconColor = Color.Gray,
+                                indicatorColor = Color.Transparent,
+
+                            ),
                             onClick = {
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
