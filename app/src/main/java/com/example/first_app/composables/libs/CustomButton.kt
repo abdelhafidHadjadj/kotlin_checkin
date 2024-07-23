@@ -15,7 +15,13 @@ import androidx.compose.ui.unit.dp
 @Composable
 
 
-fun CustomButton(onClick: () -> Unit, text: String, buttonModifier: Modifier = Modifier, textModifier: Modifier = Modifier) {
+fun CustomButton(
+    onClick: () -> Unit,
+    text: String,
+    buttonModifier: Modifier = Modifier,
+    textModifier: Modifier = Modifier,
+    textColor: Color = MaterialTheme.colorScheme.primary
+) {
     Button(onClick = onClick,
         modifier = buttonModifier,
         elevation = ButtonDefaults.elevatedButtonElevation(0.dp),
@@ -26,7 +32,8 @@ fun CustomButton(onClick: () -> Unit, text: String, buttonModifier: Modifier = M
     ) {
         Text(
             text = text,
-            modifier =  textModifier
+            modifier =  textModifier,
+            color = textColor
             )
     }
 }

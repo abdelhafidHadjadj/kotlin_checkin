@@ -28,3 +28,9 @@ fun verifySessionId(context: Context) {
         Log.d("SessionVerification", "Session ID is not set")
     }
 }
+
+
+fun removeSessionId(context: Context) {
+    val sharedPreferences: SharedPreferences = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
+    return sharedPreferences.edit().remove("session_id").apply()
+}

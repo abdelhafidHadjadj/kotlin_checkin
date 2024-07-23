@@ -48,14 +48,14 @@ fun MainScreen(navController: NavHostController) {
             .statusBarsPadding()
             .navigationBarsPadding(),
         topBar = {
-            if (currentRoute in topBarRoutes) {
+            /*if (currentRoute in topBarRoutes) {
                 TopAppBar(
                 title = { Text(text = title) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                 modifier = Modifier.shadow(elevation = 8.dp)
 
             )
-            }
+            }*/
 
         },
         bottomBar = {
@@ -97,7 +97,6 @@ fun MainScreen(navController: NavHostController) {
             navController = navController,
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(50.dp)
 
         )
     }
