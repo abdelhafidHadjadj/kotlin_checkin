@@ -136,10 +136,10 @@ Styling details such as color schemes, themes, and typography are defined in the
 ## ScreenShots Table
 
 
-| Screen Name | Description                              | Screenshot                                                                                                                                         |
-|-------------|------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Permissions | Screen to request and manage permissions | White Mode: ![Permissions Screen](screenshots/permission_screen_wm.jpg)<br/>Dark Mode: ![Permissions Screen](screenshots/permission_screen_dm.jpg) |
-| Login       | Screen for user login                    | White Mode: ![Login Screen](screenshots/login_screen_wm.jpg)<br/>Dark Mode: ![Login Screen](screenshots/login_screen_dm.jpg)                       |
-| Scanner     | QR code scanning screen                  | White Mode: ![Scanner Screen](screenshots/scanner_screen_wm.jpg)<br/>Dark Mode: ![Scanner Screen](screenshots/scanner_screen_dm.jpg)               |
-| Home        | Main screen after login                  | White Mode: ![Home Screen](screenshots/home_screen_wm.jpg)<br/>Dark Mode: ![Home Screen](screenshots/home_screen_dm.jpg)                           |
-| Settings    | Settings screen                          | White Mode: ![Settings Screen](screenshots/settings_screen_wm.jpg)<br/>Dark Mode: ![Settings Screen](screenshots/settings_screen_dm.jpg)           |
+| Screen Name | Description                              | Screenshot                                                                                                                                           |
+|-------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Permissions | Screen to request and manage permissions | White Mode: ![Permissions Screen](screenshots/permissions_screen_wm.jpg)<br/>Dark Mode: ![Permissions Screen](screenshots/permissions_screen_dm.jpg) |
+| Login       | Screen for user login                    | White Mode: ![Login Screen](screenshots/signin_screen_wm.jpg)<br/>Dark Mode: ![Login Screen](screenshots/signin_screen_dm.jpg)                       |
+| Scanner     | QR code scanning screen                  | White Mode: ![Scanner Screen](screenshots/scanner_screen_wm.jpg)<br/>Dark Mode: ![Scanner Screen](screenshots/scanner_screen_dm.jpg)                 |
+| Home        | Main screen after login                  | White Mode: ![Home Screen](screenshots/home_screen_wm.jpg)<br/>Dark Mode: ![Home Screen](screenshots/home_screen_dm.jpg)                             |
+| Settings    | Settings screen                          | White Mode: ![Settings Screen](screenshots/settings_screen_wm.jpg)<br/>Dark Mode: ![Settings Screen](screenshots/settings_screen_dm.jpg)             |
