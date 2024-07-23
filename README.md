@@ -143,3 +143,11 @@ Styling details such as color schemes, themes, and typography are defined in the
 | Scanner     | QR code scanning screen                  | White Mode: ![Scanner Screen](screenshots/scanner_screen_wm.jpg)<br/>Dark Mode: ![Scanner Screen](screenshots/scanner_screen_dm.jpg)                 |
 | Home        | Main screen after login                  | White Mode: ![Home Screen](screenshots/home_screen_wm.jpg)<br/>Dark Mode: ![Home Screen](screenshots/home_screen_dm.jpg)                             |
 | Settings    | Settings screen                          | White Mode: ![Settings Screen](screenshots/settings_screen_wm.jpg)<br/>Dark Mode: ![Settings Screen](screenshots/settings_screen_dm.jpg)             |
+
+
+## Tuto Video
+
+
+[![Watch the video](screenshots/permissions_screen_wm.jpg)](https://res.cloudinary.com/gestionprojet/video/upload/v1721773357/demo_wm_dktiwr.mp4)
+[![Watch the video](screenshots/permissions_screen_dm.jpg)](https://res.cloudinary.com/gestionprojet/video/upload/v1721773364/demo_dm_kmasup.mp4)
+
